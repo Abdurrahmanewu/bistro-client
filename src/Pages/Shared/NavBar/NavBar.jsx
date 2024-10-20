@@ -3,7 +3,7 @@ import React from "react";
 const NavBar = () => {
   return (
     <>
-      <div className="navbar bg-base-100">
+      <div className="navbar fixed z-10 bg-opacity-30 bg-black text-white max-w-screen-xl">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -32,8 +32,8 @@ const NavBar = () => {
               <li>
                 <a>Parent</a>
                 <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
+                  <li >
+                    <a >Submenu 1</a>
                   </li>
                   <li>
                     <a>Submenu 2</a>
@@ -45,7 +45,7 @@ const NavBar = () => {
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <a className="btn btn-ghost text-xl">Bisrto</a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
@@ -56,11 +56,11 @@ const NavBar = () => {
               <details>
                 <summary>Parent</summary>
                 <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
+                  <li >
+                    <a className="bg-black text-white bg-opacity-30">Submenu 1</a>
                   </li>
                   <li>
-                    <a>Submenu 2</a>
+                    <a className="bg-black text-white bg-opacity-30">Submenu 2</a>
                   </li>
                 </ul>
               </details>
