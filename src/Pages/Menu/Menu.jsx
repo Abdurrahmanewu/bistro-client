@@ -30,15 +30,15 @@ const Menu = () => {
       {/* dessert */}
       <MenuCategory
         img={dessertImg}
-        title={"DESSERT"}
+        title={"dessert"}
         items={dessert}
       ></MenuCategory>
       {/* pizza */}
-      <MenuCategory img={pizzaImg} title={"PIZZA"} items={pizza}></MenuCategory>
+      <MenuCategory img={pizzaImg} title={"pizza"} items={pizza}></MenuCategory>
       {/* salads */}
-      <MenuCategory img={saladImg} title={"SALAD"} items={salad}></MenuCategory>
+      <MenuCategory img={saladImg} title={"salad"} items={salad}></MenuCategory>
       {/* Soup */}
-      <MenuCategory img={soupImg} title={"SOUP"} items={soup}></MenuCategory>
+      <MenuCategory img={soupImg} title={"soup"} items={soup}></MenuCategory>
     </div>
   );
 };
