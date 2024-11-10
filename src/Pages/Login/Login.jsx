@@ -1,14 +1,22 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
   LoadCanvasTemplateNoReload,
   validateCaptcha,
 } from "react-simple-captcha";
+import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const captchaRef = useRef(null);
   const [disable, setDisable] = useState(true);
+  const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
+
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
@@ -18,9 +26,14 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
+    signIn(email, password).then((result) => {
+      const user = result.user;
+      console.log(user);
+      navigate(from, { replace: true });
+    });
   };
-  const handleValidateCaptcha = () => {
-    const user_captcha_value = captchaRef.current.value;
+  const handleValidateCaptcha = (e) => {
+    const user_captcha_value = e.target.value;
     if (validateCaptcha(user_captcha_value)) {
       setDisable(false);
     } else {
@@ -74,19 +87,13 @@ const Login = () => {
                 <LoadCanvasTemplate />
               </label>
               <input
-                ref={captchaRef}
+                onBlur={handleValidateCaptcha}
                 type="text"
                 placeholder="type text above"
                 className="input input-bordered"
                 name="captcha"
                 required
               />
-              <button
-                onClick={handleValidateCaptcha}
-                className="btn btn-outline btn-xs mt-4"
-              >
-                Validate
-              </button>
             </div>
             <div className="form-control mt-6">
               <input
@@ -97,6 +104,14 @@ const Login = () => {
               />
             </div>
           </form>
+          <p className="text-lg text-center p-2">
+            <small>
+              New Here?{" "}
+              <Link className="text-red-600 text-xl" to="/signup">
+                Create an account
+              </Link>
+            </small>
+          </p>
         </div>
       </div>
     </div>
