@@ -7,18 +7,20 @@ import {
 } from "react-simple-captcha";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
 const Login = () => {
   const captchaRef = useRef(null);
   const [disable, setDisable] = useState(true);
-  const { signIn } = useContext(AuthContext);
+  const { signIn, user } = useContext(AuthContext);
+  // console.log(user);
   const navigate = useNavigate();
   const location = useLocation();
 
   const from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
-    loadCaptchaEnginge(6);
+    loadCaptchaEnginge(2);
   }, []);
   const handleLogin = (event) => {
     event.preventDefault();
@@ -97,7 +99,7 @@ const Login = () => {
             </div>
             <div className="form-control mt-6">
               <input
-                disabled={disable}
+                // disabled={disable}
                 className="btn btn-primary"
                 type="submit"
                 value="login"
@@ -112,6 +114,7 @@ const Login = () => {
               </Link>
             </small>
           </p>
+          <SocialLogin></SocialLogin>
         </div>
       </div>
     </div>
